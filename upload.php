@@ -40,8 +40,20 @@
     <div class="upload-container">
         <h2>Upload Image</h2>
 
-        <?php
-        ?>
+       <?php
+        if(isset($_POST['upload'])){
+            $upload = "uploads/";
+            $filename = $_FILES['image']['name'];
+            $tmp_name = $_FILES['image']['tmp_name'];
+            $full_path = $upload.$filename;
+            if(move_uploaded_file($tmp_name,$full_path)){
+                echo "image are uploaded";
+            }
+            else{
+                echo "not uploads";
+            }
+        }
+       ?>
         <form action="upload.php" method="post" enctype="multipart/form-data">
             <label class="upload-box" for="fileInput">
                 <p>Click to Upload</p>
